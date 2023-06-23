@@ -1,9 +1,7 @@
-'use strict';
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('fields',[
+  async up(queryInterface, Sequelize) {
+    return queryInterface.bulkInsert('fields', [
       {
         id: 13,
         enclousureid: 15,
@@ -12,7 +10,7 @@ module.exports = {
         minplayers: 10,
         playeramount: 0,
         createdat: new Date(),
-        updatedat: new Date()
+        updatedat: new Date(),
       },
       {
         id: 14,
@@ -22,9 +20,9 @@ module.exports = {
         minplayers: 10,
         playeramount: 0,
         createdat: new Date(),
-        updatedat: new Date()
+        updatedat: new Date(),
       },
-    ])
+    ]);
   },
 
   down: (queryInterface) => queryInterface.bulkDelete('fields', null, {}),

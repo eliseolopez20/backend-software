@@ -1,12 +1,11 @@
 const dotenv = require('dotenv');
-dotenv.config();
 
+dotenv.config();
 
 const app = require('./app');
 const orm = require('./models');
 
 const PORT = process.env.PORT || 3001;
-
 
 orm.sequelize
   .authenticate()
@@ -21,4 +20,3 @@ orm.sequelize
     });
   })
   .catch((err) => console.error('Unable to connect to the database:', err));
-

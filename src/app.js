@@ -2,10 +2,10 @@ const Koa = require('koa');
 const { koaBody } = require('koa-body');
 const KoaLogger = require('koa-logger');
 const cors = require('@koa/cors');
-const router = require('./routes');
-const orm = require('./models');
 const session = require('koa-session');
 const koaJWT = require('koa-jwt');
+const router = require('./routes');
+const orm = require('./models');
 
 const app = new Koa();
 
@@ -20,8 +20,7 @@ const config = {
   httpOnly: false,
 
 };
-app.use(session(config,app))
-
+app.use(session(config, app));
 
 app.use(router.routes());
 
@@ -31,9 +30,8 @@ app.use(async (ctx, next) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, '0.0.0.0', () => {
   console.log('server is running at http://localhost:3000');
 });
-
 
 module.exports = app;

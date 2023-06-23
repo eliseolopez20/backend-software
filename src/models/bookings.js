@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class bookings extends Model {
     /**
@@ -11,22 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.users,{
+      this.belongsTo(models.users, {
         as: 'player_Id',
         foreignKey: 'playerid',
       });
-      this.belongsTo(models.availabilities,{
+      this.belongsTo(models.availabilities, {
         as: 'availability_Id',
         foreignKey: 'availabilityid',
       });
-      this.belongsTo(models.fields,{
+      this.belongsTo(models.fields, {
         as: 'field_Id',
         foreignKey: 'fieldid',
       });
     }
   }
   bookings.init({
-    active: DataTypes.BOOLEAN
+    active: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'bookings',

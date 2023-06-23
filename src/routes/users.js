@@ -1,4 +1,3 @@
-
 // TO DO:
 // create users CRUD
 
@@ -6,31 +5,31 @@ const Router = require('koa-router');
 
 const router = new Router();
 
-const {users} = require('../models');
 const bcrypt = require('bcrypt');
-
+const { users } = require('../models');
 
 router.get('user.show', '/profile', async (ctx) => {
   try {
     const session = await ctx.orm.sessions.findByPk(ctx.session.sessionid);
-    const userid = session.userid;
+    const { userid } = session;
     const user = await ctx.orm.users.findByPk(userid);
     let userinfo;
     console.log(user.type);
-    if (user.type=="player"){
-      userinfo = await ctx.orm.users.findByPk(userid,
+    if (user.type == 'player') {
+      userinfo = await ctx.orm.users.findByPk(
+        userid,
         {
           include: [
             { model: ctx.orm.bookings },
           ],
         },
       );
-    }
-    else if (user.type=="owner"){
-      userinfo = await ctx.orm.users.findByPk(userid,
+    } else if (user.type == 'owner') {
+      userinfo = await ctx.orm.users.findByPk(
+        userid,
         {
           include: [
-            { model: ctx.orm.enclousures }
+            { model: ctx.orm.enclousures },
           ],
         },
       );
@@ -42,25 +41,23 @@ router.get('user.show', '/profile', async (ctx) => {
   }
 });
 
-
 // Get all users
-//solo para admin
+// solo para admin
 router.get('/users', '/', async (ctx) => {
   const session = await ctx.orm.sessions.findByPk(ctx.session.sessionid);
-  const userid = session.userid;
+  const { userid } = session;
   const user = await ctx.orm.users.findByPk(userid);
-  if (user.type=="admin"){
+  if (user.type == 'admin') {
     try {
       const usersInfo = await users.findAll();
-      console.log(usersInfo)
+      console.log(usersInfo);
       ctx.body = usersInfo;
     } catch (error) {
       console.log(error);
       ctx.status = 500;
       ctx.body = { error: 'Failed to retrieve users' };
     }
-  }
-  else{
+  } else {
     ctx.status = 403;
     ctx.body = { error: 'Access Denied' };
   }
@@ -83,9 +80,8 @@ router.get('/users', '/:id', async (ctx) => {
   }
 });
 
-
 // Update a user
-router.put('/users', '/:id/update',  async (ctx) => {
+router.put('/users', '/:id/update', async (ctx) => {
   try {
     const user = await users.findByPk(ctx.params.id);
     console.log(user);
@@ -93,13 +89,15 @@ router.put('/users', '/:id/update',  async (ctx) => {
       ctx.status = 404;
       ctx.body = { error: 'User not found' };
     } else {
-      const { name, lastname, password, email, type } = ctx.request.body;
+      const {
+        name, lastname, password, email, type,
+      } = ctx.request.body;
       await user.update({
         name,
         lastname,
         password,
         email,
-        type
+        type,
       });
       ctx.body = user;
     }
@@ -108,7 +106,6 @@ router.put('/users', '/:id/update',  async (ctx) => {
     ctx.body = { error: 'Failed to update user' };
   }
 });
-
 
 // Delete a user
 router.delete('/users', '/:id/delete', async (ctx) => {
@@ -127,7 +124,5 @@ router.delete('/users', '/:id/delete', async (ctx) => {
     ctx.body = { error: 'Failed to delete User' };
   }
 });
-
-
 
 module.exports = router;

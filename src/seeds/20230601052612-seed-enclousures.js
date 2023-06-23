@@ -1,9 +1,7 @@
-'use strict';
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('enclousures',[
+  async up(queryInterface, Sequelize) {
+    return queryInterface.bulkInsert('enclousures', [
       {
         id: 15,
         ownerid: 2,
@@ -14,7 +12,7 @@ module.exports = {
         socialmedia: '@deportesuc',
         email: 'deportes@uc.cl',
         createdat: new Date(),
-        updatedat: new Date()
+        updatedat: new Date(),
       },
       {
         id: 3,
@@ -26,9 +24,9 @@ module.exports = {
         socialmedia: '@fortincruzado',
         email: 'fortincruzado@gmail.com',
         createdat: new Date(),
-        updatedat: new Date()
-      }
-    ])
+        updatedat: new Date(),
+      },
+    ]);
     /**
      * Add seed commands here.
      *

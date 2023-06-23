@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class fields extends Model {
     /**
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.enclousures,{
+      this.belongsTo(models.enclousures, {
         as: 'enclousure_Id',
         foreignKey: 'enclousureid',
       });
@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     number: DataTypes.INTEGER,
     maxplayers: DataTypes.INTEGER,
     minplayers: DataTypes.INTEGER,
-    playeramount: DataTypes.INTEGER
+    playeramount: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'fields',

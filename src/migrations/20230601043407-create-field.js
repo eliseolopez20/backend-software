@@ -1,4 +1,3 @@
-'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,35 +6,35 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       enclousureid: {
         type: Sequelize.INTEGER,
-        references: {model: 'enclousures', key: 'id'}
+        references: { model: 'enclousures', key: 'id' },
       },
       number: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       maxplayers: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       minplayers: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       playeramount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdat: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedat: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('fields');
-  }
+  },
 };

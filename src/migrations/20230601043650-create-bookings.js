@@ -1,4 +1,3 @@
-'use strict';
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -7,34 +6,34 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       playerid: {
         type: Sequelize.INTEGER,
-        references: {model: 'users', key: 'id'}
+        references: { model: 'users', key: 'id' },
       },
       availabilityid: {
         type: Sequelize.INTEGER,
-        references: {model: 'availabilities', key: 'id'}
+        references: { model: 'availabilities', key: 'id' },
       },
       fieldid: {
         type: Sequelize.INTEGER,
-        references: {model: 'fields', key: 'id'}
+        references: { model: 'fields', key: 'id' },
       },
       active: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       createdat: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedat: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('bookings');
-  }
+  },
 };

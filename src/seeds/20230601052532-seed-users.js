@@ -1,9 +1,7 @@
-'use strict';
-
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('users',[
+  async up(queryInterface, Sequelize) {
+    return queryInterface.bulkInsert('users', [
       {
         id: 1,
         name: 'Tomas',
@@ -12,7 +10,7 @@ module.exports = {
         type: 'player',
         password: '$2a$05$yUuSEPQqtRB5QfacCJvzseqR4L4fk.eQ.gCi1ZPZwrICdcDsOggEe',
         createdat: new Date(),
-        updatedat: new Date()
+        updatedat: new Date(),
       },
       {
         id: 0,
@@ -22,7 +20,7 @@ module.exports = {
         type: 'admin',
         password: '$2a$05$yUuSEPQqtRB5QfacCJvzseqR4L4fk.eQ.gCi1ZPZwrICdcDsOggEe',
         createdat: new Date(),
-        updatedat: new Date()
+        updatedat: new Date(),
       },
       {
         id: 2,
@@ -32,9 +30,9 @@ module.exports = {
         type: 'owner',
         password: '$2a$05$yUuSEPQqtRB5QfacCJvzseqR4L4fk.eQ.gCi1ZPZwrICdcDsOggEe',
         createdat: new Date(),
-        updatedat: new Date()
+        updatedat: new Date(),
       },
-    ])
+    ]);
     /**
      * Add seed commands here.
      *

@@ -1,9 +1,7 @@
 const Router = require('koa-router');
+
 const router = new Router();
 const { enclousures, users } = require('../models');
-
-
-
 
 // Create an enclousure
 router.post('/enclousures', '/create', async (ctx) => {
@@ -14,12 +12,12 @@ router.post('/enclousures', '/create', async (ctx) => {
     ownerid = owner.id;
     const enclousure = await enclousures.create({
       name: ctx.request.body.name,
-      ownerid: ownerid,
+      ownerid,
       address: ctx.request.body.address,
       district: ctx.request.body.district,
-      phonenumber:  ctx.request.body.phonenumber,
+      phonenumber: ctx.request.body.phonenumber,
       socialmedia: ctx.request.body.socialmedia,
-      email: ctx.request.body.email
+      email: ctx.request.body.email,
     });
     console.log(enclousure);
     ctx.body = enclousure;
@@ -29,19 +27,17 @@ router.post('/enclousures', '/create', async (ctx) => {
   }
 });
 
-
 // Get all enclousures
 router.get('/enclousures', '/', async (ctx) => {
   try {
     const enclousuresInfo = await enclousures.findAll();
-    console.log(enclousuresInfo)
+    console.log(enclousuresInfo);
     ctx.body = enclousuresInfo;
   } catch (error) {
     ctx.status = 500;
     ctx.body = { error: 'Failed to retrieve enclousures' };
   }
 });
-
 
 // Get a single enclousure by ID
 router.get('/enclousures', '/:id', async (ctx) => {
@@ -60,9 +56,8 @@ router.get('/enclousures', '/:id', async (ctx) => {
   }
 });
 
-
 // Update an enclousure
-router.put('/enclousures', '/:id/update',  async (ctx) => {
+router.put('/enclousures', '/:id/update', async (ctx) => {
   try {
     const enclousure = await enclousures.findByPk(ctx.params.id);
     console.log(enclousure);
@@ -70,14 +65,16 @@ router.put('/enclousures', '/:id/update',  async (ctx) => {
       ctx.status = 404;
       ctx.body = { error: 'Enclousure not found' };
     } else {
-      const { name, address, district, phonenumber, socialmedia, email } = ctx.request.body;
+      const {
+        name, address, district, phonenumber, socialmedia, email,
+      } = ctx.request.body;
       await enclousure.update({
         name,
         address,
         district,
         phonenumber,
         socialmedia,
-        email
+        email,
       });
       ctx.body = enclousure;
     }
@@ -86,8 +83,6 @@ router.put('/enclousures', '/:id/update',  async (ctx) => {
     ctx.body = { error: 'Failed to update enclousure' };
   }
 });
-
-
 
 // Delete an enclousure
 router.delete('/enclousures', '/:id/delete', async (ctx) => {
@@ -106,8 +101,5 @@ router.delete('/enclousures', '/:id/delete', async (ctx) => {
     ctx.body = { error: 'Failed to delete enclousure' };
   }
 });
-
-
-
 
 module.exports = router;
