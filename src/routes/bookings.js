@@ -19,12 +19,15 @@ router.get('/bookings', '/', async (ctx) => {
 
 // Create a field
 router.post('/bookings', '/create', async (ctx) => {
+  console.log(ctx.request.body);
     try {
       const booking = await bookings.create({
         active: ctx.request.body.active,
-        playerid: ctx.request.body.playerid,
         availabilityid: ctx.request.body.availabilityid,
-        fieldid: ctx.request.body.fieldid,
+        date: ctx.request.body.date,
+        playerid: ctx.request.body.playerid,
+        fieldid: ctx.request.body.fieldid
+        
       });
       ctx.body = booking;
     } catch (error) {
@@ -65,6 +68,7 @@ router.put('/bookings', '/:id/update',  async (ctx) => {
             availabilityid,
             fieldid
         });
+        console.log("updating booking");
         ctx.body = field;
       }
     } catch (error) {

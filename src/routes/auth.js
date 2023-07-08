@@ -29,7 +29,7 @@ router.post('/auth',"/login", async (ctx) => {
                 var token = JWT.sign(payload, `${process.env.JWT_SECRET}`);
 
                 // Lo enviamos
-                ctx.response.body = { token: token , cookie: new_session.id};
+                ctx.response.body = { token: token , cookie: new_session.id, userId: new_session.userid};
 
                 ctx.status = 201;
             } else {
@@ -46,6 +46,7 @@ router.post('/auth',"/login", async (ctx) => {
 });
 
 router.post('/auth', '/signup', async (ctx) => {
+    console.log("signup");
     try {
         const hashPassword = await bcrypt.hash(ctx.request.body.password, 5);
         const user = await ctx.orm.users.create({

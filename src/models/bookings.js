@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'availabilityid',
       });
       this.belongsTo(models.fields,{
-        as: 'field_Id',
-        foreignKey: 'fieldid',
+        as: 'field_Id', // Enclousure
+        foreignKey: 'fieldid',  // Enclousure
       });
     }
   }

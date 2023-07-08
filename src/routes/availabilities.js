@@ -18,7 +18,7 @@ router.get('/availabilities', '/', async (ctx) => {
 router.post('/availabilities', '/', async (ctx) => {
     try {
       const session = await ctx.orm.sessions.findByPk(ctx.headers.authorization);
-      const userid = session.userid;
+      const userid = 152;
       console.log(userid)
       
       const { fieldid, date, hourstart, minutestart, minutelength, slotsamount} = ctx.request.body;
