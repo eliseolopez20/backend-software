@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   bookings.init({
     active: DataTypes.BOOLEAN,
     date: DataTypes.DATE,
+    hour: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'bookings',

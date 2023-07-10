@@ -27,7 +27,7 @@ router.get('/bookings', '/', async (ctx) => {
             id: bookingInfo.fieldid
           }
         })
-        fields.push([result[0], bookingInfo.id]) 
+        fields.push([result[0], bookingInfo]) 
         //console.log("BOOKING ID",bookingInfo.id)
         //fields.push(bookingInfo.id)
       }
